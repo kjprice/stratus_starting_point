@@ -1,0 +1,53 @@
+[{
+	"id": "routes",
+	"name": "Subway Routes Default",
+	"entityName": "routes",
+	"columns": [
+		{
+			"name": "route_id",
+			"displayName": "Route",
+			"type": "string"
+		},
+		{
+			"name": "route_short_name",
+			"type": "string",
+			"displayName": "Short Name"
+		},
+		{
+			"name": "route_long_name",
+			"type": "string",
+			"displayName": "Long Name"
+		},
+		{
+			"name": "route_desc",
+			"type": "string",
+			"displayName": "Route Description"
+		}
+	]
+}, {
+	"id": "entrances",
+	"name": "Subway Entrances Default",
+	"entityName": "entrances",
+	"columns": [
+		{
+			"name": "entrance_name",
+			"displayName": "Name",
+			"type": "string"
+		},
+		{
+			"name": "entrance_type",
+			"type": "string",
+			"displayName": "Type"
+		},
+		{
+			"name": "exit_only",
+			"type": "string",
+			"displayName": "Exit Only"
+		},
+		{
+			"name": "ada",
+			"type": "string",
+			"displayName": "ADA"
+		}
+	]
+}]

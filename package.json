@@ -1,0 +1,23 @@
+{
+  "name": "stratus-startingpoint",
+  "version": "1.0.0",
+  "description": "Stratus StartingPoint React + NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
+    "dev-server": "(cd api && npm run start)",
+    "dev-client": "(cd client && npm run start)",
+    "lint": "yarn run prettier --write ."
+  },
+  "author": "Stratus Data Systems<recruiting@stratusdata.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "workspaces": [
+    "api",
+    "client"
+  ],
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "prettier": "^2.5.1"
+  }
+}
