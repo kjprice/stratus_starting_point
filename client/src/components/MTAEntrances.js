@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
 
 import {
 	Flex,
@@ -15,19 +15,17 @@ import {
 } from '@chakra-ui/react';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 
-const MTAEntrancesComponent = ({ routeID }) => {
-	if (!routeID) {
-		return <React.Fragment />;
-	}
+const MTAEntrancesComponent = () => {
+	const { selectedRoute } = useSelector((state) => {
+		return state.routes;
+	});
 
-	const { isLoading, error, data } = useQuery(`entrances_${routeID}`, () =>
-		fetch(`/api/entrances/route/${routeID}`).then((res) => res.json())
-	);
+	if (!selectedRoute) return null;
+	// TODO: Implement loading and error if needed
+	// if (!selectedRoute) return 'Loading...';
+	// if (error) return 'An error has occurred: ' + error.message;
 
-	if (isLoading) return 'Loading...';
-	if (error) return 'An error has occurred: ' + error.message;
-
-	const columnNames = Object.keys(data[0]);
+	const columnNames = Object.keys(selectedRoute[0]);
 	return (
 		<Flex w="full" alignItems="left">
 			<Table
@@ -71,7 +69,7 @@ const MTAEntrancesComponent = ({ routeID }) => {
 						},
 					}}
 				>
-					{data.map((route, tid) => {
+					{selectedRoute.map((route, tid) => {
 						return (
 							<Tr
 								key={tid}

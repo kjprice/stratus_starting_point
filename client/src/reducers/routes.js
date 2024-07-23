@@ -3,7 +3,7 @@ import { SET_ROUTES, SET_ROUTES_ERROR, SELECT_ROUTE } from '../actions/routes';
 const defaultState = {
 	error: null,
 	routes: null,
-	selectedRouteId: null,
+	selectedRoute: null,
 	routeColorsById: {},
 };
 
@@ -20,7 +20,7 @@ const RoutesReducer = (state = defaultState, action) => {
 		case SELECT_ROUTE:
 			return {
 				...state,
-				selectedRouteId: action.payload,
+				selectedRoute: action.payload,
 			};
 		case SET_ROUTES:
 			return {

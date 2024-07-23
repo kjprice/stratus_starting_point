@@ -10,6 +10,6 @@ export const setRoutesError = (error) => {
 	return { type: SET_ROUTES_ERROR, payload: error };
 };
 
-export const selectRoute = (routeId) => {
-	return { type: SELECT_ROUTE, payload: routeId };
+export const selectRoute = (routeInfo) => {
+	return { type: SELECT_ROUTE, payload: routeInfo };
 };

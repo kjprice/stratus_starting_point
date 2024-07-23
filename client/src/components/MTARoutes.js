@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useSelector } from 'react-redux';
@@ -9,6 +9,13 @@ import { selectRoute } from '../actions/routes';
 
 const MTARoutesComponent = () => {
 	const dispatch = useDispatch();
+	const fetchAndSetRoute = useCallback((routeId) => {
+		fetch(`/api/entrances/route/${routeId}`)
+			.then((res) => res.json())
+			.then((route) => {
+				dispatch(selectRoute(route));
+			});
+	});
 	const { error, routes, selectedRouteId } = useSelector((state) => {
 		return state.routes;
 	});
@@ -24,7 +31,7 @@ const MTARoutesComponent = () => {
 						<WrapItem key={`route${route.route_id}`}>
 							<Link
 								onClick={() => {
-									dispatch(selectRoute(route.route_id));
+									fetchAndSetRoute(route.route_id);
 								}}
 							>
 								<Avatar
@@ -42,9 +49,7 @@ const MTARoutesComponent = () => {
 					);
 				})}
 			</Wrap>
-			{selectedRouteId && (
-				<MTAEntrancesComponent routeID={selectedRouteId} />
-			)}
+			<MTAEntrancesComponent />
 		</Box>
 	);
 };
