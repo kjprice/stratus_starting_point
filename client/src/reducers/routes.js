@@ -6,10 +6,8 @@ const defaultState = {
 };
 
 const RoutesReducer = (state = defaultState, action) => {
-	console.log({ action });
 	switch (action.type) {
 		case SET_ROUTES:
-			console.log('SETTING ROUTES');
 			return {
 				error: null,
 				routes: action.payload,
