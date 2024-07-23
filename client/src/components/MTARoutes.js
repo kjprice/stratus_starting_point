@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { useSelector } from 'react-redux';
 
 import { Box, Link, Avatar, Wrap, WrapItem } from '@chakra-ui/react';
 import MTAEntrancesComponent from './MTAEntrances';
+import { selectRoute } from '../actions/routes';
 
 const MTARoutesComponent = () => {
-	const { error, routes } = useSelector((state) => {
+	const dispatch = useDispatch();
+	const { error, routes, selectedRouteId } = useSelector((state) => {
 		return state.routes;
 	});
-	const [routeID, setRouteID] = useState();
 	if (error) return 'An error has occurred: ' + error.message;
 	if (!routes) {
 		return 'Loading...';
@@ -21,7 +24,7 @@ const MTARoutesComponent = () => {
 						<WrapItem key={`route${route.route_id}`}>
 							<Link
 								onClick={() => {
-									setRouteID(route.route_id);
+									dispatch(selectRoute(route.route_id));
 								}}
 							>
 								<Avatar
@@ -39,7 +42,9 @@ const MTARoutesComponent = () => {
 					);
 				})}
 			</Wrap>
-			<MTAEntrancesComponent routeID={routeID} />
+			{selectedRouteId && (
+				<MTAEntrancesComponent routeID={selectedRouteId} />
+			)}
 		</Box>
 	);
 };

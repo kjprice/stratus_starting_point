@@ -1,8 +1,9 @@
-import { SET_ROUTES, SET_ROUTES_ERROR } from '../actions/routes';
+import { SET_ROUTES, SET_ROUTES_ERROR, SELECT_ROUTE } from '../actions/routes';
 
 const defaultState = {
 	error: null,
 	routes: null,
+	selectedRouteId: null,
 	routeColorsById: {},
 };
 
@@ -16,6 +17,11 @@ const setRouteColorsById = (routes) => {
 
 const RoutesReducer = (state = defaultState, action) => {
 	switch (action.type) {
+		case SELECT_ROUTE:
+			return {
+				...state,
+				selectedRouteId: action.payload,
+			};
 		case SET_ROUTES:
 			return {
 				...state,
