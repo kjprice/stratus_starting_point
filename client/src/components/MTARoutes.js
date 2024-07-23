@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
 
 import { Box, Link, Avatar, Wrap, WrapItem } from '@chakra-ui/react';
 import MTAEntrancesComponent from './MTAEntrances';
 
 const MTARoutesComponent = () => {
+	const { error, routes } = useSelector((state) => {
+		return state.routes;
+	});
 	const [routeID, setRouteID] = useState();
-	const { isLoading, error, data } = useQuery('routes', () =>
-		fetch('/api/routes').then((res) => res.json())
-	);
-
-	if (isLoading) return 'Loading...';
 	if (error) return 'An error has occurred: ' + error.message;
+	if (!routes) {
+		return 'Loading...';
+	}
 	return (
 		<Box>
 			<Wrap>
-				{data.map((route, tid) => {
+				{routes.map((route, tid) => {
 					return (
 						<WrapItem key={`route${route.route_id}`}>
 							<Link
