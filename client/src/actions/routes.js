@@ -1,6 +1,8 @@
 export const SET_ROUTES = 'SET_ROUTES';
 export const SET_ROUTES_ERROR = 'SET_ROUTES_ERROR';
 export const SELECT_ROUTE = 'SELECT_ROUTE';
+export const SELECT_ROUTE_IN_PROGRESS = 'SELECT_ROUTE_IN_PROGRESS';
+export const SELECT_ROUTE_ERROR = 'SELECT_ROUTE_ERROR';
 export const SET_PAGE = 'SET_PAGE';
 
 export const setRoutes = (routes) => {
@@ -13,6 +15,12 @@ export const setRoutesError = (error) => {
 
 export const selectRoute = (routeInfo) => {
 	return { type: SELECT_ROUTE, payload: routeInfo };
+};
+export const selectRouteInProgress = () => {
+	return { type: SELECT_ROUTE_IN_PROGRESS };
+};
+export const selectRouteError = (error) => {
+	return { type: SELECT_ROUTE_ERROR, payload: error };
 };
 
 export const setPage = (page) => {

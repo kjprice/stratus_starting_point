@@ -3,12 +3,16 @@ import {
 	SET_ROUTES_ERROR,
 	SELECT_ROUTE,
 	SET_PAGE,
+	SELECT_ROUTE_IN_PROGRESS,
+	SELECT_ROUTE_ERROR,
 } from '../actions/routes';
 
 const defaultState = {
 	error: null,
 	routes: null,
 	selectedRoute: null,
+	selectedRouteInProgress: false,
+	selectRouteError: null,
 	page: 1,
 	routeColorsById: {},
 };
@@ -23,6 +27,16 @@ const setRouteColorsById = (routes) => {
 
 const RoutesReducer = (state = defaultState, action) => {
 	switch (action.type) {
+		case SELECT_ROUTE_ERROR:
+			return {
+				...state,
+				selectRouteError: action.payload,
+			};
+		case SELECT_ROUTE_IN_PROGRESS:
+			return {
+				...state,
+				selectRouteInProgress: true,
+			};
 		case SET_PAGE:
 			return {
 				...state,
@@ -31,6 +45,8 @@ const RoutesReducer = (state = defaultState, action) => {
 		case SELECT_ROUTE:
 			return {
 				...state,
+				selectRouteInProgress: false,
+				selectRouteError: null,
 				selectedRoute: action.payload,
 			};
 		case SET_ROUTES:

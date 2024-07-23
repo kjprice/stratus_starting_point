@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setPage } from '../actions/routes';
 
@@ -28,9 +28,10 @@ const Pagination = () => {
 		dispatch(setPage(newPageNumber));
 		fetchMostRecentSelectedRoute(newPageNumber);
 	};
-	const { page, selectedRoute } = useSelector((state) => {
-		return state.routes;
-	});
+	const { page, selectedRoute, selectRouteInProgress, selectRouteError } =
+		useSelector((state) => {
+			return state.routes;
+		});
 
 	const buttons = [];
 	if (page > 1) {
@@ -66,14 +67,15 @@ const Pagination = () => {
 };
 
 const MTAEntrancesComponent = () => {
-	const { selectedRoute } = useSelector((state) => {
-		return state.routes;
-	});
+	const { selectedRoute, selectRouteError, selectRouteInProgress } =
+		useSelector((state) => {
+			return state.routes;
+		});
 
-	if (!selectedRoute) return null;
 	// TODO: Implement loading and error if needed
-	// if (!selectedRoute) return 'Loading...';
-	// if (error) return 'An error has occurred: ' + error.message;
+	if (selectRouteInProgress) return 'Loading...';
+	if (selectRouteError) return 'An error has occurred: ' + error.message;
+	if (!selectedRoute) return null;
 
 	const columnNames = Object.keys(selectedRoute[0]);
 	return (
@@ -207,7 +209,6 @@ const MTAEntrancesComponent = () => {
 						})}
 					</Tbody>
 				</Table>
-				{/* TODO: #4 Use pagination */}
 			</Flex>
 			<Pagination />
 		</>
