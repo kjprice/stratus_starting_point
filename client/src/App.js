@@ -1,14 +1,6 @@
-import { doUntil } from 'async';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import {
-	Text,
-	HStack,
-	StackDivider,
-	ChakraProvider,
-	Box,
-	Link,
-} from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import NavbarComponent from './components/Navbar';
 import MTARoutesComponent from './components/MTARoutes';
 import LeafletMapComponent from './components/LeafletMap';
@@ -28,7 +20,6 @@ const fetchRoutes = () => {
 
 export default function App({ Component }) {
 	useEffect(() => {
-		// TODO: #5 - fix race conditions
 		// TODO: This should likely be set in thunk, saga, or use middleware api
 		fetchRoutes();
 	}, []);
