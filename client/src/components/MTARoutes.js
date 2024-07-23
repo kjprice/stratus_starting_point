@@ -1,21 +1,14 @@
 import React, { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { useSelector } from 'react-redux';
 
 import { Box, Link, Avatar, Wrap, WrapItem } from '@chakra-ui/react';
 import MTAEntrancesComponent from './MTAEntrances';
 import { selectRoute } from '../actions/routes';
+import fetchSelectedRoute from '../fetchSelectedRoute';
 
 const MTARoutesComponent = () => {
-	const dispatch = useDispatch();
-	const fetchAndSetRoute = useCallback((routeId) => {
-		fetch(`/api/entrances/route/${routeId}`)
-			.then((res) => res.json())
-			.then((route) => {
-				dispatch(selectRoute(route));
-			});
-	});
+	const fetchAndSetRoute = useCallback(fetchSelectedRoute);
 	const { error, routes, selectedRouteId } = useSelector((state) => {
 		return state.routes;
 	});
