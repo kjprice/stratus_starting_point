@@ -20,7 +20,6 @@ const fetchRoutes = () => {
 
 export default function App({ Component }) {
 	useEffect(() => {
-		// TODO: This should likely be set in thunk, saga, or use middleware api
 		fetchRoutes();
 	}, []);
 

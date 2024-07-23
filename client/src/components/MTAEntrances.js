@@ -72,7 +72,6 @@ const MTAEntrancesComponent = () => {
 			return state.routes;
 		});
 
-	// TODO: Implement loading and error if needed
 	if (selectRouteInProgress) return 'Loading...';
 	if (selectRouteError) return 'An error has occurred: ' + error.message;
 	if (!selectedRoute) return null;
