@@ -1,6 +1,6 @@
 let controller;
-import store from './store';
-import { selectRoute } from './actions/routes';
+import store from '../store';
+import { selectRoute } from '../actions/routes';
 
 // Will use abort signal to kill previous (in progress) calls
 const fetchMostRecentSelectedRoute = (routeId, page = 1) => {

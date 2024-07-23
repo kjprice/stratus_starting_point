@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { Box, Link, Avatar, Wrap, WrapItem } from '@chakra-ui/react';
 import MTAEntrancesComponent from './MTAEntrances';
 import { selectRoute } from '../actions/routes';
-import fetchSelectedRoute from '../fetchSelectedRoute';
+import fetchSelectedRoute from '../api/fetchSelectedRoute';
 
 const MTARoutesComponent = () => {
 	const fetchAndSetRoute = useCallback(fetchSelectedRoute);

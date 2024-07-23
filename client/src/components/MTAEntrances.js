@@ -16,7 +16,7 @@ import {
 	Link,
 } from '@chakra-ui/react';
 import { FaExternalLinkAlt } from 'react-icons/fa';
-import fetchMostRecentSelectedRoute from '../fetchSelectedRoute';
+import fetchMostRecentSelectedRoute from '../api/fetchSelectedRoute';
 
 const RESULTS_PER_PAGE = 20;
 const PaginationButton = ({ text, onclick }) => {
